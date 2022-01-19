@@ -1,18 +1,39 @@
 <?php
 /**
- * The template for displaying 404 pages (not found)
+ * The template for displaying 404 pages (not found).
  *
  * @link https://codex.wordpress.org/Creating_an_Error_404_Page
  *
- * @package deep
+ * @package Astra
+ * @since 1.0.0
  */
 
-get_header();
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
-/**
-* The function is located in the following path
-* deep/src/class-deep-theme.php
-*/
-do_action( 'deep_theme_notfound_page' );
+get_header(); ?>
 
-get_footer();
+<?php if ( astra_page_layout() == 'left-sidebar' ) : ?>
+
+	<?php get_sidebar(); ?>
+
+<?php endif ?>
+
+	<div id="primary" <?php astra_primary_class(); ?>>
+
+		<?php astra_primary_content_top(); ?>
+
+		<?php astra_404_content_template(); ?>		
+
+		<?php astra_primary_content_bottom(); ?>
+
+	</div><!-- #primary -->
+
+<?php if ( astra_page_layout() == 'right-sidebar' ) : ?>
+
+	<?php get_sidebar(); ?>
+
+<?php endif ?>
+
+<?php get_footer(); ?>

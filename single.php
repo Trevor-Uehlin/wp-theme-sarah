@@ -1,18 +1,39 @@
 <?php
 /**
- * The template for displaying all single posts
+ * The template for displaying all single posts.
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
  *
- * @package deep
+ * @package Astra
+ * @since 1.0.0
  */
 
-get_header();
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
-/**
- * The function is located in the following path
- * deep/src/class-deep-theme.php
- */
-do_action( 'deep_theme_single' );
+get_header(); ?>
 
-get_footer();
+<?php if ( astra_page_layout() == 'left-sidebar' ) : ?>
+
+	<?php get_sidebar(); ?>
+
+<?php endif ?>
+
+	<div id="primary" <?php astra_primary_class(); ?>>
+
+		<?php astra_primary_content_top(); ?>
+
+		<?php astra_content_loop(); ?>
+
+		<?php astra_primary_content_bottom(); ?>
+
+	</div><!-- #primary -->
+
+<?php if ( astra_page_layout() == 'right-sidebar' ) : ?>
+
+	<?php get_sidebar(); ?>
+
+<?php endif ?>
+
+<?php get_footer(); ?>

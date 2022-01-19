@@ -1,23 +1,46 @@
 <?php
 /**
- * The main template file
+ * The main template file.
  *
  * This is the most generic template file in a WordPress theme
  * and one of the two required files for a theme (the other being style.css).
  * It is used to display a page when nothing more specific matches a query.
  * E.g., it puts together the home page when no home.php file exists.
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package deep
+ * @package Astra
+ * @since 1.0.0
  */
 
-get_header();
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
-/**
- * The function is located in the following path
- * deep/src/class-deep-theme.php
- */
-do_action( 'deep_theme_index' );
+get_header(); ?>
 
-get_footer();
+<?php if ( astra_page_layout() == 'left-sidebar' ) : ?>
+
+	<?php get_sidebar(); ?>
+
+<?php endif ?>
+
+	<div id="primary" <?php astra_primary_class(); ?>>
+
+		<?php astra_primary_content_top(); ?>
+
+		<?php astra_content_loop(); ?>
+
+		<?php astra_pagination(); ?>
+
+		<?php astra_primary_content_bottom(); ?>
+
+	</div><!-- #primary -->
+
+<?php if ( astra_page_layout() == 'right-sidebar' ) : ?>
+
+	<?php get_sidebar(); ?>
+
+<?php endif ?>
+
+<?php get_footer(); ?>
